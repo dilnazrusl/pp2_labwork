@@ -22,7 +22,7 @@ a = "Hello, World!"
 print(a.lower())
 
 a = " Hello, World! "
-print(a.strip()) # returns "Hello, World!"
+print(a.strip())
 
 
 
@@ -31,35 +31,35 @@ print(a.replace("H", "J"))
 
 
 a = "Hello, World!"
-print(a.split(",")) # returns ['Hello', ' World!']
+print(a.split(",")) 
 
 
 
 #myexamples
 
 quote = "Python is amazing!"
-print(quote[0:6])   # 'Python'
-print(quote[7:9])   # 'is'
-print(quote[-7:])   # 'amazing!'
+print(quote[0:6]) 
+print(quote[7:9])   
+print(quote[-7:])   
 
 
 name = "dIlNaZ"
-print(name.upper())  # 'DILNAZ'
-print(name.lower())  # 'dilnaz'
-print(name.capitalize())  # 'Dilnaz'
+print(name.upper()) 
+print(name.lower())  
+print(name.capitalize())  
 
 
 text = "   Hello, Python!   "
-print(text.strip())       # 'Hello, Python!'
-print(text.lstrip())      # 'Hello, Python!   '
-print(text.rstrip())      # '   Hello, Python!'
+print(text.strip())      
+print(text.lstrip())      
+print(text.rstrip())      
 
 
 sentence = "I love Python, Java, and C++"
 print(sentence.replace("Python", "JavaScript"))
-print(sentence.split(", "))  # ['I love Python', 'Java', 'and C++']
+print(sentence.split(", ")) 
 
 
 word = "abcdefghij"
-print(word[::2])   # каждый второй символ -> 'acegi'
-print(word[::-1])  # перевернуть строку -> 'jihgfedcba'
+print(word[::2])  
+print(word[::-1])  
