@@ -22,7 +22,7 @@ a = "Hello, World!"
 print(a.lower())
 
 a = " Hello, World! "
-print(a.strip())
+print(a.strip()) # returns "Hello, World!"
 
 
 
@@ -31,7 +31,7 @@ print(a.replace("H", "J"))
 
 
 a = "Hello, World!"
-print(a.split(",")) 
+print(a.split(",")) # returns ['Hello', ' World!']
 
 
 
