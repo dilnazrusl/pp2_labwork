@@ -23,7 +23,8 @@ if number % 2 == 0:
 else:
   print("The number is odd")
 
-#4
+#my_example
+
 username = "Emil"
 
 if len(username) > 0:
@@ -32,7 +33,7 @@ else:
   print("Error: Username cannot be empty")
 
 
-#5
+
 activity = input("Куда вы идёте сегодня? (work/university/gym): ")
 
 if activity == "work":
@@ -43,3 +44,30 @@ elif activity == "gym":
     print("Я одену спортивную одежду")
 else:
     print("Я одену что-то удобное")
+
+
+age = 16
+
+if age >= 18:
+    print("Access granted")
+else:
+    print("Access denied")
+
+
+password = "12345"
+
+if len(password) >= 8:
+    print("Password is strong")
+else:
+    print("Password is too short")
+
+
+x = 10
+y = 25
+
+if x < y:
+    print("x is less than y")
+elif x == y:
+    print("x is equal to y")
+else:
+    print("x is greater than y")

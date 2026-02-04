@@ -170,3 +170,66 @@ if count > 3:
 if (count := len(numbers)) > 3:
     print(f"List has {count} elements")
 
+
+
+#my example 
+
+def is_positive(n):
+    return n > 0
+
+print(is_positive(10))  # True
+print(is_positive(-5))  # False
+
+if is_positive(3):
+    print("Positive")
+else:
+    print("Not Positive")
+
+
+
+class Test:
+    def __len__(self):
+        return 3
+
+obj = Test()
+print(bool(obj))  # True, так как __len__ возвращает 3
+
+class Empty:
+    def __len__(self):
+        return 0
+
+empty_obj = Empty()
+print(bool(empty_obj))  # False
+
+
+x = 5.5
+y = "42"
+z = 100
+
+print(isinstance(x, float))  # True
+print(isinstance(y, str))    # True
+print(isinstance(z, int))    # True
+print(isinstance(x, int))    # False
+
+
+a = 10
+b = 0
+c = None
+
+print(bool(a) and bool(b))  # False
+print(bool(a) or bool(c))   # True
+print(not bool(b))          # True
+
+
+def is_even(n):
+    return n % 2 == 0
+
+print(is_even(8))   # True
+print(is_even(7))   # False
+
+if is_even(12):
+    print("Even")
+else:
+    print("Odd")
+
+

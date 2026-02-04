@@ -11,7 +11,7 @@ while i < 9:
     break
   i += 1
 
-#3
+#my_examples
 i = 0
 while i < 10:
     if i == 5:
@@ -19,7 +19,7 @@ while i < 10:
     print(i)
     i += 1
 
-#4
+
 number = 1
 while number <= 10:
     print(number)
@@ -27,10 +27,26 @@ while number <= 10:
         break
     number += 1
 
-#5
+
 count = 10
 while count > 0:
     print(count)
     if count == 3:
         break
     count -= 1
+
+
+x = 0
+while x < 8:
+    print(x)
+    if x == 4:
+        break
+    x += 1
+
+
+numbers = [2, 4, 6, 8, 10]
+
+for n in numbers:
+    print(n)
+    if n == 6:
+        break

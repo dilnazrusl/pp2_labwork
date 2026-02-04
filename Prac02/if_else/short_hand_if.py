@@ -142,8 +142,36 @@ elif value == 0:
 else:
   print("Positive value")
 
-#19
-def calculate_discount(price):
-  pass # TODO: Implement discount logic
 
-# Function exists but doesn't do anything yet
+#my_examples
+
+x = 7
+y = 3
+if x != y: print("x is not equal to y")
+
+age = 17
+status = "Adult" if age >= 18 else "Minor"
+print(status)
+
+is_admin = False
+is_editor = True
+
+if is_admin or is_editor:
+    print("Access granted")
+
+
+logged_in = False
+
+if not logged_in:
+    print("Please log in")
+
+
+balance = 100
+withdraw = 50
+
+if balance > 0:
+    if withdraw <= balance:
+        print("Transaction approved")
+    else:
+        print("Insufficient funds")
+

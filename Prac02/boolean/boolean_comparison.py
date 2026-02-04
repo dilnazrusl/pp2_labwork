@@ -72,3 +72,46 @@ print("hello" in text)
 print("z" not in text)
 
 
+
+# my example 
+
+
+colors = ["red", "green", "blue"]
+
+print("green" in colors)
+print("yellow" not in colors)
+
+
+
+message = "Python is fun"
+
+print("Python" in message)
+print("python" in message)
+print("fun" not in message)
+
+
+
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+list3 = list1
+
+print(list1 is list3)
+print(list1 is list2)
+print(list1 is not list2)
+
+
+
+x = 7
+
+print(x > 5 and x < 10)
+print(x < 5 or x > 6)
+print(not(x == 7))
+
+
+a = 10
+b = 20
+
+print(a == b)
+print(a != b)
+print(a > b)
+print(a <= b)

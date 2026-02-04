@@ -11,7 +11,7 @@ while i < 9:
     continue
   print(i)
 
-#3
+#my_examples
 i = 0
 while i < 7:
     i += 1
@@ -19,7 +19,7 @@ while i < 7:
         continue
     print(i)
 
-#4
+
 number = 1
 while number <= 10:
     if number % 2 == 0:
@@ -28,11 +28,25 @@ while number <= 10:
     print(number)
     number += 1
 
-#5
-count = 0
+
 while count < 6:
     count += 1
     if count == 2 or count == 5:
         continue
     print(count)
 
+
+x = 0
+while x < 6:
+    x += 1
+    if x == 3:
+        continue
+    print(x)
+
+
+values = [1, 2, 3, 4, 5]
+
+for v in values:
+    if v == 4:
+        continue
+    print(v)

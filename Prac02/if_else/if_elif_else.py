@@ -29,7 +29,8 @@ elif age < 65:
 elif age >= 65:
   print("You are a senior")
 
-#4
+
+#my_example
 day = 3
 
 if day == 1:
@@ -48,7 +49,8 @@ elif day == 7:
   print("Sunday")
 
 
-#5
+#my_example
+
 temperature = 30
 
 if temperature < 0:
@@ -62,3 +64,44 @@ elif temperature < 30:
 else:
   print("Hot")
 
+
+number = 10
+if number > 0:
+  print("Positive")
+elif number < 0:
+  print("Negative")
+else:
+  print("Zero")
+
+
+
+time = 18
+if time < 12:
+  print("Morning")
+elif time < 18:
+  print("Afternoon")
+else:
+  print("Evening") 
+
+
+
+if marks >= 90:
+  print("Excellent")
+elif marks >= 70:
+  print("Good")
+elif marks >= 50:
+  print("Pass")
+else:
+  print("Fail")
+
+
+temperature = 85
+
+if temperature < 50:
+    print("Too Cold")
+elif temperature < 70:
+    print("Warm")
+elif temperature < 100:
+    print("Hot")
+else:
+    print("Boiling")

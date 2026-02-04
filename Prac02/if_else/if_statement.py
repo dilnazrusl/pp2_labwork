@@ -8,20 +8,33 @@ number = 15
 if number > 0:
   print("The number is positive")
 
-#3
+#my_example
 age = 20
 if age >= 18:
   print("You are an adult")
   print("You can vote")
   print("You have full legal rights")
 
-#4
+
 is_logged_in = True
 if is_logged_in:
   print("Welcome back!")
 
-#5
+
 
 score = 85
 if score >= 50:
   print("You passed the exam")
+
+
+temperature = 25
+
+if temperature > 20:
+    print("It is warm outside")
+
+
+
+name = "Alice"
+
+if len(name) > 0:
+    print("Name is not empty")
