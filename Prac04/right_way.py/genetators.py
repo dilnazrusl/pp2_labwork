@@ -26,6 +26,8 @@ def Ex2():
             yield i
     N = Get_Num()
     print(*Even_Num(N), sep = ', ')
+
+    
 def Ex3():
     def Div(N):
         for i in range(N+1):
