@@ -1,0 +1,5 @@
+Python is amazing
+Learning file handling
+Line 3: Hello World
+Line 4: KBTU Student
+Line 5: Practice makes perfect
