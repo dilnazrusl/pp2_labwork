@@ -12,7 +12,7 @@ COLORS = {
     'blue': (0, 0, 255)
 }
 
-# --- MODES ---
+# MODES Это просто номера режимов рисования.
 LINE = 1
 RECT = 2
 CIRCLE = 3
@@ -88,8 +88,8 @@ def main():
             # --- MOUSE DOWN ---
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    drawing = True
-                    start_pos = event.pos
+                    drawing = True #Когда ты нажимаешь мышь:
+                    start_pos = event.pos #event.pos — координаты курсора.
                     points = [event.pos]
 
                     # color buttons
@@ -103,15 +103,15 @@ def main():
                         color = COLORS['blue']
                         drawing = False
 
-            # --- MOUSE UP ---
+            #  MOUSE UP Если кнопка зажата → программа записывает новые точки.
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1 and drawing:
                     drawing = False
 
-                    if mode == LINE:
+                    if mode == LINE: #Фигура сохраняется в список shapes. shapes = []  список всех нарисованных фигур.
                         shapes.append(("line", points.copy(), color, radius))
                     else:
-                        shapes.append((mode, start_pos, event.pos, color, radius))
+                        shapes.append((mode, start_pos, event.pos, color, radius)) #Фигура сохраняется.
 
             # --- MOUSE MOVE ---
             if event.type == pygame.MOUSEMOTION:

@@ -1,156 +1,177 @@
 import psycopg2
 import csv
-from config import load_config
-config=load_config()
-def create_table():
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
+from config import config
+from connect import connect
 
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS phonebook(
-            id SERIAL PRIMARY KEY,
-            username VARCHAR(100),
-            phone VARCHAR(20)
-        )
-    """)
-    conn.commit()
-    cur.close()
-    conn.close()
+
+def create_table():
+    conn=connect()
+    
+
+    if conn!=None:
+        cur=conn.cursor()
+       
+
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS phonebook(
+                id SERIAL PRIMARY KEY,
+                username VARCHAR(100),
+                phone VARCHAR(20)
+            )
+        """)
+        print("Created table")
+        conn.commit()
+        cur.close()
+        conn.close()
 
 def insert_from_console():
     username=input("Enter name: ")
     phone=input("Enter phone: ")
 
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
 
-    cur.execute(
-        "INSERT INTO phonebook (username, phone) VALUES (%s, %s)",
-        (username, phone)
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
+        cur.execute(
+            "INSERT INTO phonebook (username, phone) VALUES (%s, %s)",
+            (username, phone)
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
 
 def insert_from_csv():
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    count=0
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        count=0
 
-    with open("contacts.csv", "r", encoding="utf-8") as file:
-        reader=csv.reader(file)
-        for row in reader:
-            print(f"Adding {row}")
-            cur.execute(
-                "INSERT INTO phonebook (username, phone) VALUES (%s, %s)",
-                (row[0], row[1])
-            )
-            count+=1
-    conn.commit()
-    cur.close()
-    conn.close()
-    print(f"{count} contacts imported from csv")
+        with open("contacts.csv", "r", encoding="utf-8") as file:
+            reader=csv.reader(file)
+            for row in reader:
+                print(f"Adding {row}")
+                cur.execute(
+                    "INSERT INTO phonebook (username, phone) VALUES (%s, %s)",
+                    (row[0], row[1])
+                )
+                count+=1
+        conn.commit()
+        cur.close()
+        conn.close()
+        print(f"{count} contacts imported from csv")
 
 def query_all():
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute("SELECT * FROM phonebook")
-    rows=cur.fetchall()
-    for row in rows:
-        print(row)
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        cur.execute("SELECT * FROM phonebook")
+        rows=cur.fetchall()
+        for row in rows:
+            print(row)
+        cur.close()
+        conn.close()
 
 def update_contact(old_name, new_name, new_phone):
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
 
-    cur.execute("""
-        UPDATE phonebook
-        SET username=%s, phone=%s
-        WHERE username=%s
-    """, (new_name, new_phone, old_name))
-    conn.commit()
-    cur.close()
-    conn.close()
+        cur.execute("""
+            UPDATE phonebook
+            SET username=%s, phone=%s
+            WHERE username=%s
+        """, (new_name, new_phone, old_name))
+        conn.commit()
+        cur.close()
+        conn.close()
 
 def delete_by_name(name):
-    conn=psycopg2.connect(**config)
-    cur= conn.cursor()
-    cur.execute("DELETE FROM phonebook WHERE username=%s", (name,))
-    conn.commit()
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+
+        cur.execute("DELETE FROM phonebook WHERE username=%s", (name,))
+        conn.commit()
+        cur.close()
+        conn.close()
 
 
 #practice8
 def search_pattern():
     pattern=input("Enter search pattern: ")
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute("SELECT * FROM search_phonebook(%s)", (pattern,))
-    rows=cur.fetchall()
-    print("Search result:")
-    for row in rows:
-        print(row)
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+
+        cur.execute("SELECT * FROM search_phonebook(%s)", (pattern))
+        rows=cur.fetchall()
+        print("Search result:")
+        for row in rows:
+            print(row)
+        cur.close()
+        conn.close()
 
 def upsert_user_proc():
     name=input("Enter username: ")
     phone=input("Enter phone: ")
 
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute("CALL upsert_user(%s, %s)", (name, phone))
-    conn.commit()
-    print("Inserted or updated successfully")
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        cur.execute("CALL upsert_user(%s, %s)", (name, phone))
+        conn.commit()
+        print("Inserted or updated successfully")
+        cur.close()
+        conn.close()
 
 def paginated_query():
     limit=int(input("enter limit: "))
     offset=int(input("Enter offset: "))
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute(
-        "SELECT * FROM get_phonebook_paginated(%s, %s)",
-        (limit, offset)
-    )
-    rows=cur.fetchall()
-    print("Paginated result:")
-    for row in rows:
-        print(row)
-    cur.close()
-    conn.close()
+    
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        cur.execute(
+            "SELECT * FROM get_phonebook_paginated(%s, %s)",
+            (limit, offset)
+        )
+        rows=cur.fetchall()
+        print("Paginated result:")
+        for row in rows:
+            print(row)
+        cur.close()
+        conn.close()
 
 def delete_by_proc():
     value=input("Enter username or phone: ")
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute("CALL delete_user(%s)", (value,))
-    conn.commit()
-    print("Deleted successfully")
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        cur.execute("CALL delete_user(%s)", (value,))
+        conn.commit()
+        print("Deleted successfully")
+        cur.close()
+        conn.close()
 
 def bulk_insert():
     names=input("Enter names separated by comma: ").split(",")
     phones=input("Enter phones separated by comma: ").split(",")
-    conn=psycopg2.connect(**config)
-    cur=conn.cursor()
-    cur.execute(
-        "CALL bulk_insert_users(%s, %s, NULL)",
-        (names, phones)
-    )
-    conn.commit()
-    print("Bulk insert completed")
-    cur.close()
-    conn.close()
+    conn=connect()
+    if conn!=None:
+        cur=conn.cursor()
+        cur.execute(
+            "CALL bulk_insert_users(%s, %s, NULL)",
+            (names, phones)
+        )
+        conn.commit()
+        print("Bulk insert completed")
+        cur.close()
+        conn.close()
 
 
 #menu
 create_table()
+
 while True:
     print("\n Phonebook Menu")
     print("1.Add contact from console")
